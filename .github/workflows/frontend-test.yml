@@ -46,3 +46,15 @@ jobs:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           message: "Frontend test coverage: {testCoverage}%"
 
+  npm_audit_scan:
+    name: npm audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: install dependencies
+        working-directory: ./frontend
+        run: npm install
+      - name: npm audit
+        working-directory: ./frontend
+        run: npm audit
+
