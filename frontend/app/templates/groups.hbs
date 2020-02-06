@@ -1,9 +1,9 @@
 <ol>
   {{#each this.model as |group|}}
     <li class="p-1">
-      {{#link-to "group" group}}
+      <LinkTo @route="group" @model={{group}}>
         {{group.name}}
-      {{/link-to}}
+      </LinkTo>
     </li>
   {{/each}}
 </ol>

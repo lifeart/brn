@@ -1,30 +1,22 @@
 {{#each this.exerciseHeaders as |header|}}
-  <h2 data-test-series-navigation-header>
-    {{header}}
-  </h2>
-  <div class="exercise-block__levels">
-    {{#each this.sortedExercises as |exercise|}}
-      {{#if (eq exercise.name header)}}
-        {{#link-to
-          "group.series.exercise"
-          exercise.id
-          data-test-series-navigation-list-link
-          class="task-square-link shadow exercise-block__level"
-          disabled=(not exercise.canInteract)
-        }}
-          <FaIcon
-            @icon="check-circle"
-            class={{if
-              exercise.canInteract
-              "exercise-block__icon fa-3x"
-              "exercise-block__icon inactive-icon fa-3x"
-            }}
-          />
-          <div>
-            Упражнение {{exercise.level}}
-          </div>
-        {{/link-to}}
-      {{/if}}
-    {{/each}}
-  </div>
+<h2 data-test-series-navigation-header>
+	{{header}}
+</h2>
+<div class="exercise-block__levels">
+	{{#each this.sortedExercises as |exercise|}}
+	{{#if (eq exercise.name header)}}
+	<LinkTo @route="group.series.exercise" @model={{exercise.id}} @disabled={{not exercise.canInteract}}
+		class="task-square-link shadow exercise-block__level" data-test-series-navigation-list-link>
+		<FaIcon @icon="check-circle" class={{if
+										exercise.canInteract
+										"exercise-block__icon fa-3x"
+										"exercise-block__icon inactive-icon fa-3x"
+									}} />
+		<div>
+			Упражнение {{exercise.level}}
+		</div>
+	</LinkTo>
+	{{/if}}
+	{{/each}}
+</div>
 {{/each}}
